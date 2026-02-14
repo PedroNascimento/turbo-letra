@@ -31,7 +31,10 @@ Oferecer um treino de escrita previsível e confortável. Diferente de apps gami
   - **Tipografia**: Ajuste de tamanho da fonte e espaçamento entre linhas.
   - **Temas**: Alternância entre **Claro** (Papel Azulado) e **Escuro Calmo** (Deep Navy).
   - **Som**: Ativar/desativar beep de conclusão.
-- **Persistência Automática**: Seus blocos e configurações são salvos no navegador.
+- **Persistência Automática**: Seus blocos e configurações são salvos automaticamente indicando "Salvo ✓".
+- **Backup e Restauração**:
+  - **Exportar**: Baixe um arquivo `.json` com todos os seus dados.
+  - **Importar**: Restaure seus backups facilmente em qualquer dispositivo.
 
 ### ⏱️ Tela de Execução (`/run`)
 
@@ -70,11 +73,12 @@ turbo-letra/
 ├── app/
 │   ├── layout.tsx          # Configuração global (Fontes Fredoka/Geist)
 │   ├── globals.css         # Tema CSS Variable (Serene Blue Palette)
-│   ├── icon.tsx            # Favicon gerado dinamicamente (SVG Pencil)
-│   ├── opengraph-image.tsx # Imagem social gerada via código
-│   ├── page.tsx            # Home (Editor + Settings)
+│   ├── icon.png            # Favicon oficial
+│   ├── opengraph-image.tsx # Imagem social gerada via código (Logo Only)
+│   ├── page.tsx            # Home (Editor + Settings + Backup)
 │   └── run/                # Tela de Treino (Fullscreen)
 ├── components/             # Componentes modulares (BlockEditor, RunControls...)
+├── hooks/                  # Hooks customizados (useAutosave...)
 └── lib/                    # Lógica pura (storage, timer, audio)
 ```
 
