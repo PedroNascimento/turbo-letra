@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://turboletra.vercel.app/opengraph-image?v=11"], // Force absolute URL + cache bust
+        url: "https://turboletra.vercel.app/opengraph-image?v=11", // Force absolute URL + cache bust
         width: 1200,
         height: 630,
         alt: "Turbo Letra - Treino de Escrita",
