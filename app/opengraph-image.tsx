@@ -10,12 +10,15 @@ export const size = {
 export const contentType = "image/png";
 
 export default function Image() {
-  // Read the SVG icon file to embed it precisely
-  // This requires the standard Node.js runtime (default), not Edge
+  // Read the SVG icon file
+  // The user's SVG wraps a PNG. We extract the raw PNG to ensure Satori renders it correctly
+  // and to avoid any SVG filter issues (like white-on-white).
   const iconPath = join(process.cwd(), "app/icon.svg");
-  const iconData = readFileSync(iconPath);
-  const base64Icon = iconData.toString("base64");
-  const iconSrc = `data:image/svg+xml;base64,${base64Icon}`;
+  const iconData = readFileSync(iconPath, "utf-8");
+  
+  // Extract the base64 PNG data from the xlink:href attribute
+  const match = iconData.match(/xlink:href="(data:image\/png;base64,[^"]+)"/);
+  const iconSrc = match ? match[1] : `data:image/svg+xml;base64,${Buffer.from(iconData).toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -27,7 +30,7 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(to bottom right, #f0f9ff, #e0f2fe)", // Lighter, cleaner background to match new theme
+          background: "linear-gradient(to bottom right, #f0f9ff, #e0f2fe)", 
           fontFamily: "sans-serif",
         }}
       >
