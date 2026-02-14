@@ -10,15 +10,12 @@ export const size = {
 export const contentType = "image/png";
 
 export default function Image() {
-  // Read the SVG icon file
-  // The user's SVG wraps a PNG. We extract the raw PNG to ensure Satori renders it correctly
-  // and to avoid any SVG filter issues (like white-on-white).
-  const iconPath = join(process.cwd(), "app/icon.svg");
-  const iconData = readFileSync(iconPath, "utf-8");
-  
-  // Extract the base64 PNG data from the xlink:href attribute
-  const match = iconData.match(/xlink:href="(data:image\/png;base64,[^"]+)"/);
-  const iconSrc = match ? match[1] : `data:image/svg+xml;base64,${Buffer.from(iconData).toString("base64")}`;
+  // Read the official logomark PNG file
+  // This file is now guaranteed to be the icon only (no text), ensuring correct display
+  const iconPath = join(process.cwd(), "public/logomark.png");
+  const iconData = readFileSync(iconPath);
+  const base64Icon = iconData.toString("base64");
+  const iconSrc = `data:image/png;base64,${base64Icon}`;
 
   return new ImageResponse(
     (
