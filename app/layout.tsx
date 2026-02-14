@@ -28,6 +28,14 @@ export const metadata: Metadata = {
     siteName: "Turbo Letra",
     locale: "pt_BR",
     type: "website",
+    images: [
+      {
+        url: "/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Turbo Letra - Treino de Escrita",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -35,6 +43,7 @@ export const metadata: Metadata = {
     description:
       "Treino de escrita focado e calmo. Experimente agora.",
     creator: "@turboletra",
+    images: ["/opengraph-image"],
   },
 };
 
