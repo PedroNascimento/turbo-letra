@@ -13,13 +13,20 @@ import {
   setSettings as saveSettings,
   Settings,
   defaultSettings,
+  exportState,
+  validateImport,
 } from "@/lib/storage";
+import { useAutosave } from "@/hooks/useAutosave";
+import { Download, Upload, Check, Save } from "lucide-react";
 
 export default function HomePage() {
   const router = useRouter();
   const [blocks, setBlocksState] = useState<string[]>([]);
   const [settings, setSettingsState] = useState<Settings>(defaultSettings);
   const [loaded, setLoaded] = useState(false);
+  
+  // Autosave
+  const saveStatus = useAutosave({ blocks, settings });
 
   useEffect(() => {
     // Wrap in setTimeout to avoid "setState synchronously in effect" warning
@@ -34,12 +41,12 @@ export default function HomePage() {
 
   const handleBlocksChange = useCallback((newBlocks: string[]) => {
     setBlocksState(newBlocks);
-    saveBlocks(newBlocks);
+    // saveBlocks handled by hook
   }, []);
 
   const handleSettingsChange = useCallback((newSettings: Settings) => {
     setSettingsState(newSettings);
-    saveSettings(newSettings);
+    // saveSettings handled by hook
     document.documentElement.classList.toggle(
       "dark",
       newSettings.theme === "dark"
@@ -48,10 +55,48 @@ export default function HomePage() {
 
   function handleStart() {
     if (blocks.length === 0) return;
-    saveBlocks(blocks);
-    saveSettings(settings);
     router.push("/run");
   }
+
+  const handleExport = () => {
+    const jsonString = exportState(blocks, settings);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `turbo-letra-backup-${new Date().toISOString().split('T')[0]}.json`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+
+  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const content = event.target?.result as string;
+      const result = validateImport(content);
+
+      if (result.success) {
+        setBlocksState(result.blocks);
+        setSettingsState(result.settings);
+        document.documentElement.classList.toggle("dark", result.settings.theme === "dark");
+        // Force immediate save to storage to sync
+        saveBlocks(result.blocks);
+        saveSettings(result.settings);
+        alert("Backup importado com sucesso! ✓");
+      } else {
+        alert(`Erro na importação: ${result.error}`);
+      }
+    };
+    reader.readAsText(file);
+    
+    // Reset input
+    e.target.value = "";
+  };
 
   if (!loaded) {
     return (
@@ -80,6 +125,41 @@ export default function HomePage() {
             Treine sua escrita copiando textos com tempo marcado!
           </p>
         </header>
+        {/* Persistence Toolbar */}
+        <div className="flex justify-between items-center px-1 animate-in fade-in duration-700 delay-150">
+          <div className="flex items-center gap-2 text-sm font-medium transition-colors">
+            {saveStatus === 'saved' && (
+              <span className="text-emerald-600 dark:text-emerald-400 flex items-center gap-1.5 opacity-100 transition-opacity">
+                <Check className="w-4 h-4" /> Salvo
+              </span>
+            )}
+            {saveStatus === 'saving' && (
+               <span className="text-text-secondary flex items-center gap-1.5 opacity-80">
+                <Save className="w-3.5 h-3.5 animate-pulse" /> Salvando...
+               </span>
+            )}
+          </div>
+
+          <div className="flex items-center gap-3">
+             <label className="cursor-pointer text-xs font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-muted-bg">
+                <Upload className="w-3.5 h-3.5" />
+                Importar
+                <input
+                  type="file"
+                  accept=".json,application/json"
+                  className="hidden"
+                  onChange={handleImport}
+                />
+             </label>
+             <button
+               onClick={handleExport}
+               className="text-xs font-medium text-text-secondary hover:text-accent transition-colors flex items-center gap-1.5 py-1.5 px-3 rounded-lg hover:bg-muted-bg"
+             >
+                <Download className="w-3.5 h-3.5" />
+                Exportar
+             </button>
+          </div>
+        </div>
 
         {/* Block Editor Card - Soft White Surface */}
         <section className="bg-card rounded-2xl border border-card-border p-6 shadow-sm">
