@@ -30,10 +30,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/opengraph-image",
+        url: "https://turboletra.vercel.app/opengraph-image?v=2", // Force absolute URL + cache bust
         width: 1200,
         height: 630,
         alt: "Turbo Letra - Treino de Escrita",
+        type: "image/png",
       },
     ],
   },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     description:
       "Treino de escrita focado e calmo. Experimente agora.",
     creator: "@turboletra",
-    images: ["/opengraph-image"],
+    images: ["https://turboletra.vercel.app/opengraph-image?v=2"],
   },
 };
 

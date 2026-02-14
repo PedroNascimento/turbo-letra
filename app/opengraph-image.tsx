@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+// export const runtime = "edge";
 
 export const alt = "Turbo Letra — Treino de Escrita";
 export const size = {
@@ -26,6 +26,15 @@ export default function Image() {
       >
         <div
           style={{
+            display: "flex",
+            fontSize: 100,
+            marginBottom: 20,
+            background: "white",
+            width: 160,
+            height: 160,
+            alignItems: "center",
+            justifyContent: "center",
+            borderRadius: "50%",
             boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
           }}
         >
@@ -45,6 +54,7 @@ export default function Image() {
         </div>
         <div
           style={{
+            display: "flex",
             fontSize: 80,
             fontWeight: 800,
             color: "white",
@@ -56,6 +66,7 @@ export default function Image() {
         </div>
         <div
           style={{
+             display: "flex",
              fontSize: 32,
              color: "#E7F1FF",
              fontWeight: 500,
