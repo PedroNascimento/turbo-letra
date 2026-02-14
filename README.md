@@ -2,6 +2,8 @@
 
 **Turbo Letra** é uma aplicação web focada em treino de escrita calma e profunda (_Deep Work_), projetada para auxiliar estudantes e crianças (especialmente neurodivergentes) a praticarem a cópia de textos com blocos cronometrados.
 
+🔗 **Acesse agora:** [turboletra.vercel.app](https://turboletra.vercel.app/)
+
 Com uma identidade visual **"Azul Sereno"** e modos de foco, o projeto visa criar um ambiente livre de distrações e ansiedade.
 
 ---
