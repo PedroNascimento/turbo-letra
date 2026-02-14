@@ -1,0 +1,11 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .primary { stroke: #4A90E2; stroke-width: 40; stroke-linecap: round; stroke-linejoin: round; fill: none; }
+    </style>
+  </defs>
+  
+  <!-- Flow: A stylized 'S' or wave motion representing writing -->
+  <!-- Smooth curve from bottom left to top right -->
+  <path class="primary" d="M 100 350 Q 256 500 256 256 T 412 162" />
+</svg>

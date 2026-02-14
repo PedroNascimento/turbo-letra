@@ -10,9 +10,8 @@ export const size = {
 export const contentType = "image/png";
 
 export default function Image() {
-  // Read the official logomark PNG file
-  // This file is now guaranteed to be the icon only (no text), ensuring correct display
-  const iconPath = join(process.cwd(), "public/logomark.png");
+  // Read the user-selected icon path strictly
+  const iconPath = join(process.cwd(), "app/icon.png");
   const iconData = readFileSync(iconPath);
   const base64Icon = iconData.toString("base64");
   const iconSrc = `data:image/png;base64,${base64Icon}`;

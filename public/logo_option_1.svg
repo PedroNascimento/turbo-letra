@@ -1,0 +1,15 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .primary { stroke: #4A90E2; stroke-width: 40; stroke-linecap: round; fill: none; }
+      .dot { fill: #4A90E2; stroke: none; }
+    </style>
+  </defs>
+  <!-- Background transparent -->
+  
+  <!-- Open Loop: A circle starting at top and going almost all the way around -->
+  <path class="primary" d="M 256 60 A 196 196 0 1 1 120 120" />
+  
+  <!-- Terminal Dot at the start position to suggest origin/focus -->
+  <circle cx="256" cy="60" r="20" class="dot" />
+</svg>
