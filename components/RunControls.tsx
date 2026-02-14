@@ -25,14 +25,14 @@ export default function RunControls({
 }: RunControlsProps) {
   // Soft, calm button base style
   const btnBase =
-    "flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all duration-300 active:scale-[0.98] text-base shadow-sm hover:shadow-md";
+    "flex items-center gap-2 px-4 sm:px-6 py-3 rounded-xl font-medium transition-all duration-300 active:scale-[0.98] text-sm sm:text-base shadow-sm hover:shadow-md";
   
   // Secondary buttons (Navigation, Restart) - White surface, soft border
   const btnSecondary =
     "bg-card text-foreground border border-card-border hover:bg-muted-bg hover:border-accent";
 
   return (
-    <div className="flex items-center justify-center gap-4 flex-wrap">
+    <div className="flex items-center justify-center gap-2 sm:gap-4 flex-wrap">
       <button
         onClick={onPrevious}
         disabled={!hasPrevious}

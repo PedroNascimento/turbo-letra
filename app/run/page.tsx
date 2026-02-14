@@ -236,7 +236,7 @@ export default function RunPage() {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground transition-colors duration-500">
       {/* Top bar */}
-      <div className="px-8 pt-6 pb-4">
+      <div className="px-4 sm:px-8 pt-4 sm:pt-6 pb-4">
         <div className="flex items-start justify-between">
           {/* Block info */}
           <div className="space-y-1">
@@ -271,7 +271,7 @@ export default function RunPage() {
       </div>
 
       {/* Block text */}
-      <div className="flex-1 flex items-center justify-center px-8 py-6">
+      <div className="flex-1 flex items-center justify-center px-4 sm:px-8 py-4 sm:py-6">
         <div className="max-w-4xl w-full">
           <p
             className="text-center whitespace-pre-wrap text-text-primary transition-all duration-300"
@@ -286,7 +286,7 @@ export default function RunPage() {
       </div>
 
       {/* Controls */}
-      <div className="px-6 py-6 border-t border-card-border/50 bg-white/50 backdrop-blur-sm">
+      <div className="px-4 sm:px-6 py-4 sm:py-6 border-t border-card-border/50 bg-white/50 backdrop-blur-sm">
         <RunControls
           isPaused={state === "paused"}
           onTogglePause={togglePause}

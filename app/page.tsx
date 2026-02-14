@@ -65,12 +65,12 @@ export default function HomePage() {
       <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
         {/* Header */}
         <header className="text-center space-y-4 py-8">
-          <h1 className="text-6xl sm:text-7xl font-rounded font-bold tracking-tight text-foreground flex items-center justify-center gap-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-rounded font-bold tracking-tight text-foreground flex flex-wrap items-center justify-center gap-3 sm:gap-4">
             <span>Turbo</span>
             <span className="text-accent">Letra</span>
-            <Pencil className="w-12 h-12 sm:w-14 sm:h-14 text-accent rotate-12 transform hover:scale-110 transition-transform cursor-pointer" strokeWidth={2.5} />
+             <Pencil className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-accent rotate-12 transform hover:scale-110 transition-transform cursor-pointer" strokeWidth={2.5} />
           </h1>
-          <p className="text-lg sm:text-xl text-text-secondary font-medium max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-xl text-text-secondary font-medium max-w-2xl mx-auto leading-relaxed px-2">
             Treine sua escrita copiando textos com tempo marcado!
           </p>
         </header>
