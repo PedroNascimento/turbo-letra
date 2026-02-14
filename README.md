@@ -1,66 +1,63 @@
-# ⚡ Turbo Letra
+# ✏️ Turbo Letra
 
-**Turbo Letra** é uma aplicação web minimalista para treino de escrita rápida, projetada para auxiliar crianças (especialmente neurodivergentes) a praticarem a cópia de textos com blocos cronometrados. O responsável cadastra os textos, define o tempo e as preferências visuais, e a criança treina em modo tela cheia, focando exclusivamente no conteúdo.
+**Turbo Letra** é uma aplicação web focada em treino de escrita calma e profunda (_Deep Work_), projetada para auxiliar estudantes e crianças (especialmente neurodivergentes) a praticarem a cópia de textos com blocos cronometrados.
+
+Com uma identidade visual **"Azul Sereno"** e modos de foco, o projeto visa criar um ambiente livre de distrações e ansiedade.
 
 ---
 
 ## 🎯 Objetivo
 
-Crianças com dificuldade em acompanhar a escrita do quadro na escola precisam de um treino simples, previsível e sem distrações. O **Turbo Letra** resolve isso oferecendo:
+Oferecer um treino de escrita previsível e confortável. Diferente de apps gamificados cheios de estímulos, o **Turbo Letra** aposta na calmaria:
 
-- Blocos de texto exibidos um por vez, em tela cheia
-- Temporizador regressivo com troca automática de bloco
-- Interface calma, sem excesso de estímulos visuais
-- Configuração flexível pelo responsável
+- **Blocos de texto isolados**: Foco total em um parágrafo por vez.
+- **Temporizador suave**: Sem cores de alerta (vermelho) ou piscadas agressivas.
+- **Identidade Visual Confortável**: Paleta de cores azulada e tipografia arredondada que reduz a carga cognitiva.
+- **Feedback Sonoro Sutil**: Beep opcional para marcar o ritmo sem sustos.
 
 ---
 
 ## ✨ Funcionalidades
 
-### Página de Configuração (`/`)
+### 🏠 Página de Configuração (`/`)
 
-- **Editor de blocos** com dois modos:
-  - **Colar texto**: cole um texto inteiro e gere blocos automaticamente por parágrafos (`\n\n`)
-  - **Lista de blocos**: visualize, reordene (↑/↓) e remova blocos individualmente
-- **Configurações personalizáveis**:
-  - Tempo por bloco (5–600 segundos) com slider e input numérico
-  - Tamanho da fonte (24px, 32px, 40px, 48px)
-  - Espaçamento de linha (Compacto, Normal, Espaçado)
-  - Tema claro/escuro
-  - Beep sonoro ao finalizar cada bloco (toggle)
-- **Persistência automática** via `localStorage`
+- **Editor de Blocos Inteligente**:
+  - **Colar Texto**: Cole um texto longo e ele será dividido automaticamente em blocos (separados por `\n\n`).
+  - **Gerenciamento Visual**: Reordene e exclua blocos com facilidade.
+- **Painel de Controle**:
+  - **Tempo por bloco**: Ajuste de 5s a 10 minutos.
+  - **Tipografia**: Ajuste de tamanho da fonte e espaçamento entre linhas.
+  - **Temas**: Alternância entre **Claro** (Papel Azulado) e **Escuro Calmo** (Deep Navy).
+  - **Som**: Ativar/desativar beep de conclusão.
+- **Persistência Automática**: Seus blocos e configurações são salvos no navegador.
 
-### Tela de Execução (`/run`)
+### ⏱️ Tela de Execução (`/run`)
 
-- Ativação automática de **tela cheia** (Fullscreen API) com fallback
-- Exibição centralizada do texto com fonte grande e configurável
-- **Timer regressivo** em formato `mm:ss`, grande e legível
-- Indicador de progresso: `Bloco X/Y`
-- **Troca automática** de bloco ao zerar o timer
-- **Beep sonoro** (Web Audio API) ao finalizar cada bloco
-- **Aviso visual** nos últimos 5 segundos (borda pulsante)
-- **Controles acessíveis**: Pausar/Continuar, Anterior, Próximo, Reiniciar, Sair
-- **Atalhos de teclado**: `Espaço` (pausar), `←` `→` (navegar), `R` (reiniciar bloco), `Esc` (sair)
-
-### Tela de Conclusão
-
-- Mensagem "Concluído ✅" ao finalizar todos os blocos
-- Botões para **recomeçar** ou **voltar** à tela de configuração
+- **Imersão Total**: Modo tela cheia automático.
+- **Timer Regressivo**: Visualização clara do tempo restante.
+- **Navegação Flexível**: Pule blocos, pause ou reinicie a qualquer momento.
+- **Aviso Suave**: Nos últimos 5s, o timer muda sutilmente de cor (sem vermelho).
+- **Controles Modernos**: Interface com ícones **Lucide React** intuitivos.
+- **Atalhos de Teclado**:
+  - `Espaço`: Pausar/Continuar
+  - `←` / `→`: Navegar entre blocos
+  - `R`: Reiniciar o bloco atual
+  - `Esc`: Sair do treino
 
 ---
 
 ## 🛠️ Tecnologias
 
-| Tecnologia                                     | Uso                                                 |
-| ---------------------------------------------- | --------------------------------------------------- |
-| [Next.js 16](https://nextjs.org/) (App Router) | Framework React com roteamento server-side          |
-| [React 19](https://react.dev/)                 | Biblioteca de UI com hooks e componentes funcionais |
-| [TypeScript](https://www.typescriptlang.org/)  | Tipagem estática para maior robustez                |
-| [Tailwind CSS v4](https://tailwindcss.com/)    | Estilização utilitária com tokens semânticos        |
-| [Turbopack](https://turbo.build/pack)          | Bundler de alta performance para desenvolvimento    |
-| Web Audio API                                  | Geração de beep sonoro sem dependências externas    |
-| Fullscreen API                                 | Modo tela cheia nativo do navegador                 |
-| localStorage                                   | Persistência local de dados sem backend             |
+Projeto construído com as melhores práticas de 2026:
+
+| Tecnologia                                        | Função                                                    |
+| :------------------------------------------------ | :-------------------------------------------------------- |
+| **[Next.js 16](https://nextjs.org/)**             | Framework React com App Router e Turbopack.               |
+| **[TypeScript](https://www.typescriptlang.org/)** | Tipagem estática para código robusto.                     |
+| **[Tailwind CSS v4](https://tailwindcss.com/)**   | Estilização moderna com variáveis CSS nativas (`@theme`). |
+| **[Lucide React](https://lucide.dev/)**           | Ícones vetoriais modernos e leves.                        |
+| **Web Audio API**                                 | Geração de som (beep) sem arquivos externos.              |
+| **LocalStorage**                                  | Banco de dados local (privacidade total).                 |
 
 ---
 
@@ -69,20 +66,14 @@ Crianças com dificuldade em acompanhar a escrita do quadro na escola precisam d
 ```
 turbo-letra/
 ├── app/
-│   ├── layout.tsx          # Layout raiz (fonte, metadados, tema)
-│   ├── page.tsx            # Página de configuração
-│   ├── globals.css         # Design system com tokens semânticos
-│   └── run/
-│       └── page.tsx        # Tela de execução (fullscreen + timer)
-├── components/
-│   ├── BlockEditor.tsx     # Editor de blocos (colar texto / lista)
-│   ├── SettingsPanel.tsx   # Painel de configurações
-│   └── RunControls.tsx     # Controles da tela de execução
-├── lib/
-│   ├── storage.ts          # Persistência em localStorage com validação
-│   ├── timer.ts            # Formatação de tempo (mm:ss)
-│   └── audio.ts            # Beep via Web Audio API (OscillatorNode)
-└── public/
+│   ├── layout.tsx          # Configuração global (Fontes Fredoka/Geist)
+│   ├── globals.css         # Tema CSS Variable (Serene Blue Palette)
+│   ├── icon.tsx            # Favicon gerado dinamicamente (SVG Pencil)
+│   ├── opengraph-image.tsx # Imagem social gerada via código
+│   ├── page.tsx            # Home (Editor + Settings)
+│   └── run/                # Tela de Treino (Fullscreen)
+├── components/             # Componentes modulares (BlockEditor, RunControls...)
+└── lib/                    # Lógica pura (storage, timer, audio)
 ```
 
 ---
@@ -91,40 +82,36 @@ turbo-letra/
 
 ### Pré-requisitos
 
-- [Node.js](https://nodejs.org/) 18+ instalado
+- Node.js 18+
 
 ### Instalação
 
 ```bash
+# Clone o repositório
 git clone https://github.com/seu-usuario/turbo-letra.git
+
+# Instale as dependências
 cd turbo-letra
 npm install
-```
 
-### Desenvolvimento
-
-```bash
+# Rode em desenvolvimento
 npm run dev
 ```
 
-Acesse [http://localhost:3000](http://localhost:3000).
-
-### Build de Produção
-
-```bash
-npm run build
-npm start
-```
+Acesse **http://localhost:3000** no seu navegador.
 
 ---
 
-## 🧩 Decisões Técnicas
+## 🎨 Identidade Visual "Serene Blue"
 
-- **Zero dependências extras**: todo o áudio é gerado via Web Audio API (OscillatorNode com fade-out exponencial) e a persistência usa `localStorage` nativo, sem bibliotecas externas.
-- **Design system via CSS custom properties**: cores semânticas (`--accent`, `--card`, `--muted`, etc.) centralizadas em `globals.css`, com suporte completo a dark mode via classe `.dark`.
-- **UX pensada para acessibilidade**: interface calma e previsível, sem barras de progresso que possam gerar ansiedade, com fonte configurável e espaçamentos adaptativos.
-- **Client-side only**: toda a lógica roda no navegador, tornando a aplicação leve, offline-friendly e sem necessidade de backend.
-- **Validação defensiva no localStorage**: funções de leitura com fallback para valores padrão previnem crashes por dados corrompidos.
+O projeto utiliza uma paleta de cores focada em **calma e concentração**:
+
+- **Fundo Claro**: `#F4F8FF` (Azul Gelo)
+- **Fundo Escuro**: `#0B1220` (Deep Navy - evitamos preto puro `#000`)
+- **Acento**: `#4A90E2` (Azul Sereno)
+- **Superfícies**: `#FFFFFF` (Claro) e `#121B2D` (Escuro)
+
+Tipografia: **Fredoka** (Títulos arredondados) + **Geist Sans** (Leitura técnica).
 
 ---
 

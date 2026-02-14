@@ -20,40 +20,50 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(to bottom right, #4f46e5, #9333ea)",
+          background: "linear-gradient(to bottom right, #4A90E2, #1E5FD8)",
           color: "white",
         }}
       >
         <div
           style={{
-            display: "flex",
-            fontSize: 120,
-            marginBottom: 20,
+            boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
           }}
         >
-          ⚡
+          <svg
+            width="80"
+            height="80"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#4A90E2"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
+            <path d="m15 5 4 4" />
+          </svg>
         </div>
         <div
           style={{
             fontSize: 80,
             fontWeight: 800,
-            background: "linear-gradient(to right, #ffffff, #e0e7ff)",
-            backgroundClip: "text",
-            color: "transparent",
+            color: "white",
             letterSpacing: -2,
+            marginBottom: 10,
           }}
         >
           Turbo Letra
         </div>
         <div
           style={{
-            fontSize: 32,
-            marginTop: 20,
-            color: "#e0e7ff",
-            fontWeight: 600,
+             fontSize: 32,
+             color: "#E7F1FF",
+             fontWeight: 500,
+             textAlign: "center",
+             maxWidth: "80%",
           }}
         >
-          Treino de escrita com blocos cronometrados
+          Treine sua escrita copiando textos com tempo marcado!
         </div>
       </div>
     ),

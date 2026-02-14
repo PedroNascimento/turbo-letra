@@ -7,149 +7,123 @@ interface SettingsPanelProps {
   onChange: (settings: Settings) => void;
 }
 
-export default function SettingsPanel({ settings, onChange }: SettingsPanelProps) {
+export default function SettingsPanel({
+  settings,
+  onChange,
+}: SettingsPanelProps) {
   function update(partial: Partial<Settings>) {
     onChange({ ...settings, ...partial });
   }
 
-  const formatTimeLabel = (s: number) => {
-    if (s < 60) return `${s}s`;
-    const m = Math.floor(s / 60);
-    const r = s % 60;
-    return r > 0 ? `${m}min ${r}s` : `${m}min`;
-  };
-
   return (
-    <div className="space-y-6">
+    <div className="grid gap-8 sm:grid-cols-2">
       {/* Time per block */}
       <div className="space-y-3">
-        <div className="flex items-center justify-between">
-          <label className="text-sm font-semibold text-foreground">
-            ⏱️ Tempo por bloco
-          </label>
-          <span className="text-sm font-bold text-accent">
-            {formatTimeLabel(settings.timePerBlock)}
+        <label className="text-sm font-medium text-text-primary flex justify-between">
+          Tempo por bloco
+          <span className="text-accent font-bold bg-accent-light px-2 py-0.5 rounded text-xs">
+            {Math.floor(settings.timePerBlock / 60)}:
+            {(settings.timePerBlock % 60).toString().padStart(2, "0")}
           </span>
-        </div>
-        <div className="flex items-center gap-3">
+        </label>
+        <div className="flex items-center gap-4">
           <input
             type="range"
-            min={5}
-            max={300}
-            step={5}
+            min="5"
+            max="600"
+            step="5"
             value={settings.timePerBlock}
             onChange={(e) => update({ timePerBlock: Number(e.target.value) })}
-            className="flex-1 h-2 rounded-full appearance-none bg-muted-bg accent-accent cursor-pointer"
+            className="flex-1 h-2 bg-muted-bg rounded-lg appearance-none cursor-pointer accent-accent hover:accent-accent-hover focus:outline-none focus:ring-2 focus:ring-accent/20"
           />
-          <div className="flex items-center gap-1.5">
-            <input
-              type="number"
-              min={5}
-              max={600}
-              value={settings.timePerBlock}
-              onChange={(e) => {
-                const v = Number(e.target.value);
-                if (v >= 5 && v <= 600) update({ timePerBlock: v });
-              }}
-              className="w-16 text-center py-2 rounded-xl border-2 border-card-border bg-card text-foreground text-sm font-bold focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-accent transition-all"
-            />
-            <span className="text-xs text-muted font-medium">seg</span>
-          </div>
         </div>
+        <p className="text-xs text-text-secondary">
+          Ajuste entre 5 segundos e 10 minutos.
+        </p>
       </div>
 
-      {/* Font size */}
+      {/* Font Size */}
       <div className="space-y-3">
-        <label className="text-sm font-semibold text-foreground">
-          🔤 Tamanho da fonte
+        <label className="text-sm font-medium text-text-primary">
+          Tamanho da fonte
         </label>
-        <div className="grid grid-cols-4 gap-2">
+        <div className="flex bg-muted-bg/50 p-1 rounded-xl">
           {[24, 32, 40, 48].map((size) => (
             <button
               key={size}
               onClick={() => update({ fontSize: size })}
-              className={`py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
+              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
                 settings.fontSize === size
-                  ? "bg-accent text-white shadow-md shadow-accent/25 scale-105"
-                  : "bg-card border border-card-border text-foreground/70 hover:border-accent/40 hover:text-foreground"
+                  ? "bg-card text-accent shadow-sm border border-card-border"
+                  : "text-muted hover:text-foreground"
               }`}
             >
-              {size}px
+              {size === 24 ? "P" : size === 32 ? "M" : size === 40 ? "G" : "GG"}
             </button>
           ))}
         </div>
       </div>
 
-      {/* Line height */}
+      {/* Line Height */}
       <div className="space-y-3">
-        <label className="text-sm font-semibold text-foreground">
-          📏 Espaçamento de linha
+        <label className="text-sm font-medium text-text-primary">
+          Espaçamento entre linhas
         </label>
-        <div className="grid grid-cols-3 gap-2">
-          {[
-            { value: 1.2, label: "Compacto" },
-            { value: 1.5, label: "Normal" },
-            { value: 1.8, label: "Espaçado" },
-          ].map(({ value, label }) => (
+        <div className="flex bg-muted-bg/50 p-1 rounded-xl">
+          {[1.2, 1.5, 1.8].map((height) => (
             <button
-              key={value}
-              onClick={() => update({ lineHeight: value })}
-              className={`py-2.5 rounded-xl text-sm font-bold transition-all duration-200 ${
-                settings.lineHeight === value
-                  ? "bg-accent text-white shadow-md shadow-accent/25 scale-105"
-                  : "bg-card border border-card-border text-foreground/70 hover:border-accent/40 hover:text-foreground"
+              key={height}
+              onClick={() => update({ lineHeight: height })}
+              className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                settings.lineHeight === height
+                  ? "bg-card text-accent shadow-sm border border-card-border"
+                  : "text-muted hover:text-foreground"
               }`}
             >
-              {label}
+              {height === 1.2
+                ? "Compacto"
+                : height === 1.5
+                ? "Normal"
+                : "Espaçado"}
             </button>
           ))}
         </div>
       </div>
 
       {/* Toggles */}
-      <div className="space-y-3">
-        {/* Theme */}
-        <div className="flex items-center justify-between p-3 bg-card rounded-xl border border-card-border">
-          <div className="flex items-center gap-2">
-            <span className="text-base">{settings.theme === "dark" ? "🌙" : "☀️"}</span>
-            <label className="text-sm font-semibold text-foreground">
-              Tema {settings.theme === "dark" ? "escuro" : "claro"}
-            </label>
-          </div>
+      <div className="space-y-4">
+        <div className="flex items-center justify-between p-3 rounded-xl border border-card-border hover:border-accent-light transition-colors bg-card">
+          <span className="text-sm font-medium text-text-primary">
+            Tema Escuro
+          </span>
           <button
             onClick={() =>
               update({ theme: settings.theme === "dark" ? "light" : "dark" })
             }
-            className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${
-              settings.theme === "dark" ? "bg-accent" : "bg-muted-bg"
+            className={`relative w-11 h-6 rounded-full transition-colors duration-300 ${
+              settings.theme === "dark" ? "bg-text-primary" : "bg-muted-bg"
             }`}
           >
             <span
-              className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300 shadow-sm flex items-center justify-center text-xs ${
+              className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 shadow-sm ${
                 settings.theme === "dark" ? "translate-x-5" : "translate-x-0"
               }`}
-            >
-              {settings.theme === "dark" ? "🌙" : "☀️"}
-            </span>
+            />
           </button>
         </div>
 
-        {/* Beep */}
-        <div className="flex items-center justify-between p-3 bg-card rounded-xl border border-card-border">
-          <div className="flex items-center gap-2">
-            <span className="text-base">{settings.beepEnabled ? "🔔" : "🔕"}</span>
-            <label className="text-sm font-semibold text-foreground">
-              Beep ao finalizar
-            </label>
-          </div>
+        <div className="flex items-center justify-between p-3 rounded-xl border border-card-border hover:border-accent-light transition-colors bg-card">
+          <span className="text-sm font-medium text-text-primary">
+            Som ao finalizar (Beep)
+          </span>
           <button
             onClick={() => update({ beepEnabled: !settings.beepEnabled })}
-            className={`relative w-12 h-7 rounded-full transition-colors duration-300 ${
+            className={`relative w-11 h-6 rounded-full transition-colors duration-300 ${
               settings.beepEnabled ? "bg-accent" : "bg-muted-bg"
             }`}
           >
             <span
-              className={`absolute top-0.5 left-0.5 w-6 h-6 bg-white rounded-full transition-transform duration-300 shadow-sm ${
+              className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform duration-300 shadow-sm ${
                 settings.beepEnabled ? "translate-x-5" : "translate-x-0"
               }`}
             />
