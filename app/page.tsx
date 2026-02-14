@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import BlockEditor from "@/components/BlockEditor";
 import SettingsPanel from "@/components/SettingsPanel";
 import { Pencil, ScrollText, Settings as SettingsIcon } from "lucide-react";
@@ -62,15 +63,20 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
-      <div className="max-w-4xl mx-auto px-4 py-8 space-y-8">
+      <div className="max-w-4xl mx-auto px-4 py-4 space-y-5">
         {/* Header */}
-        <header className="text-center space-y-4 py-8">
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-rounded font-bold tracking-tight text-foreground flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-            <span>Turbo</span>
-            <span className="text-accent">Letra</span>
-             <Pencil className="w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 text-accent rotate-12 transform hover:scale-110 transition-transform cursor-pointer" strokeWidth={2.5} />
-          </h1>
-          <p className="text-base sm:text-xl text-text-secondary font-medium max-w-2xl mx-auto leading-relaxed px-2">
+        <header className="text-center space-y-1 py-2 flex flex-col items-center animate-in fade-in slide-in-from-top-4 duration-700">
+          <div className="w-full max-w-[280px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[550px] hover:scale-105 transition-transform duration-300">
+            <Image
+              src="/logo.svg"
+              alt="Turbo Letra Logo"
+              width={600}
+              height={200}
+              className="w-full h-auto object-contain drop-shadow-sm"
+              priority
+            />
+          </div>
+          <p className="text-base sm:text-lg text-text-secondary font-medium max-w-2xl mx-auto leading-relaxed px-2">
             Treine sua escrita copiando textos com tempo marcado!
           </p>
         </header>

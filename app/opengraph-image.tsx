@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
-
-// export const runtime = "edge";
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 
 export const alt = "Turbo Letra — Treino de Escrita";
 export const size = {
@@ -10,6 +10,13 @@ export const size = {
 export const contentType = "image/png";
 
 export default function Image() {
+  // Read the SVG icon file to embed it precisely
+  // This requires the standard Node.js runtime (default), not Edge
+  const iconPath = join(process.cwd(), "app/icon.svg");
+  const iconData = readFileSync(iconPath);
+  const base64Icon = iconData.toString("base64");
+  const iconSrc = `data:image/svg+xml;base64,${base64Icon}`;
+
   return new ImageResponse(
     (
       <div
@@ -20,44 +27,37 @@ export default function Image() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(to bottom right, #4A90E2, #1E5FD8)",
-          color: "white",
+          background: "linear-gradient(to bottom right, #f0f9ff, #e0f2fe)", // Lighter, cleaner background to match new theme
+          fontFamily: "sans-serif",
         }}
       >
         <div
           style={{
             display: "flex",
-            fontSize: 100,
-            marginBottom: 20,
             background: "white",
-            width: 160,
-            height: 160,
+            width: 250,
+            height: 250,
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: "50%",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.2)",
+            borderRadius: "40px",
+            boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
+            marginBottom: 40,
           }}
         >
-          <svg
-            width="80"
-            height="80"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#4A90E2"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z" />
-            <path d="m15 5 4 4" />
-          </svg>
+          {/* Embed the SVG Icon directly */}
+          <img
+            src={iconSrc}
+            width="180"
+            height="180"
+            alt="Turbo Letra Icon"
+          />
         </div>
         <div
           style={{
             display: "flex",
             fontSize: 80,
             fontWeight: 800,
-            color: "white",
+            color: "#0f172a", // Slate-900
             letterSpacing: -2,
             marginBottom: 10,
           }}
@@ -66,12 +66,12 @@ export default function Image() {
         </div>
         <div
           style={{
-             display: "flex",
-             fontSize: 32,
-             color: "#E7F1FF",
-             fontWeight: 500,
-             textAlign: "center",
-             maxWidth: "80%",
+            display: "flex",
+            fontSize: 36,
+            color: "#334155", // Slate-700
+            fontWeight: 500,
+            textAlign: "center",
+            maxWidth: "80%",
           }}
         >
           Treine sua escrita copiando textos com tempo marcado!
