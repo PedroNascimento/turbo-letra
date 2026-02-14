@@ -34,46 +34,22 @@ export default function Image() {
           style={{
             display: "flex",
             background: "white",
-            width: 250,
-            height: 250,
+            width: 500,
+            height: 500,
             alignItems: "center",
             justifyContent: "center",
-            borderRadius: "40px",
+            borderRadius: "80px",
             boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
-            marginBottom: 40,
+            marginBottom: 0, // No margin needed
           }}
         >
           {/* Embed the SVG Icon directly */}
           <img
             src={iconSrc}
-            width="180"
-            height="180"
+            width="400" // Increased size since it's alone
+            height="400"
             alt="Turbo Letra Icon"
           />
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 80,
-            fontWeight: 800,
-            color: "#0f172a", // Slate-900
-            letterSpacing: -2,
-            marginBottom: 10,
-          }}
-        >
-          Turbo Letra
-        </div>
-        <div
-          style={{
-            display: "flex",
-            fontSize: 36,
-            color: "#334155", // Slate-700
-            fontWeight: 500,
-            textAlign: "center",
-            maxWidth: "80%",
-          }}
-        >
-          Treine sua escrita copiando textos com tempo marcado!
         </div>
       </div>
     ),
